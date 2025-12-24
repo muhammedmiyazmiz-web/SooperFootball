@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOOPERFOOTBALL – player images</title>
+<link rel="shortcut icon" href="C:\Users\temp\Documents\INSTA\logos\SOOOPER FOOTBALL.png" type="image">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
+body{background:linear-gradient(135deg,#0b5ed7,#111);min-height:100vh;color:#fff}
+
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px)
+}
+.logo{font-size:22px;font-weight:700}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap}
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:20px;
+  transition:.3s
+}
+.nav-links a:hover{background:rgba(255,255,255,.2)}
+.nav-links a.active{background:#fff;color:#0b5ed7;font-weight:600}
+
+header{
+  padding:20px;
+  text-align:center
+}
+header h1{font-size:30px;margin-top:10px}
+
+/* SEARCH */
+.search-box{margin:20px auto;max-width:420px;position:relative}
+.search-box input{
+  width:100%;
+  padding:13px 45px 13px 18px;
+  border-radius:30px;
+  border:none;
+  outline:none
+}
+.search-box span{position:absolute;right:16px;top:50%;transform:translateY(-50%)}
+
+/* CONTENT */
+.container{max-width:1200px;margin:30px auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+
+.card{
+  background:#fff;
+  color:#111;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 15px 35px rgba(0,0,0,.35);
+  transition:.4s
+}
+.card:hover{transform:translateY(-12px)}
+.card img{width:100%;height:260px;object-fit:cover}
+.card-body{padding:18px}
+.card-body h3{margin-bottom:6px}
+.card-body p{font-size:14px;color:#555}
+
+.badge{
+  position:absolute;
+  background:#0b5ed7;
+  color:#fff;
+  padding:6px 14px;
+  border-radius:20px;
+  margin:15px;
+  font-size:12px
+}
+
+footer{text-align:center;padding:18px;color:#aaa;margin-top:30px}
+
+@media(max-width:768px){
+  .navbar{flex-direction:column;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <div class="logo">SOOPERFOOTBALL</div>
+  <div class="nav-links">
+    <a href="C:\Users\temp\Documents\YT\Home.html">Home</a>
+    <a href="C:\Users\temp\Documents\YT\Transfers.html">Transfers</a>
+    <a href="C:\Users\temp\Documents\YT\news.html">Latest News</a>
+    <a href="C:\Users\temp\Documents\YT\Matches.html">Matches</a>
+    <a href="C:\Users\temp\Documents\YT\Clubs.html">Clubs</a>
+    <a href="C:\Users\temp\Documents\YT\Leagues.HTML">Leagues & Table</a>
+    <a class="active" href="C:\Users\temp\Documents\YT\player.html">Player images</a>
+  </div>
+</nav>
+
+<header>
+  <h1>Football Players images</h1>
+</header>
+
+<!-- SEARCH -->
+<div class="search-box">
+  <input type="text" id="search" placeholder="Search players images...">
+  <span>🔍</span>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="grid" id="grid"></div>
+</div>
+
+<footer>© 2025 Football News Website</footer>
+
+<script>
+const data=[
+ {name:"Lionel Messi",desc:"leo messi go too india",img:"https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/6223/live/1ce5f040-d9d8-11f0-ba85-09c2975a5393.jpg.webp",tag:"GOAT"},
+ {name:"Cristiano Ronaldo",desc:"Record breaking season continues.",img:"https://scontent-maa2-2.xx.fbcdn.net/v/t39.30808-6/571034029_122198086784323263_6922824764043334618_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=_dNJo7f3MpIQ7kNvwE3UAY0&_nc_oc=Admjxb98wuW2CV_tnBGSchH1LG8fFuLcDNvqrXQzXxLWZfr67rg20PcfA8nhAcX-LGU&_nc_zt=23&_nc_ht=scontent-maa2-2.xx&_nc_gid=RkRko90rEFwb4DmK5z9D_A&oh=00_Aflidy9vjGFLmwLFVFBbEfJFXmqW_aQNTvSs6xZXnQGceg&oe=694A9844",tag:"GOAT"},
+ {name:"Young Talent",desc:"A future superstar emerges.",img:"https://assets-us-01.kc-usercontent.com/31dbcbc6-da4c-0033-328a-d7621d0fa726/2280e1a4-e50b-4c29-93cf-96620eeda1c5/Lamine%20Yamal%20celebrates%20after%20scoring%20agisnts%20Real%20Madrid.JPG?ver=03-06-2025?w=1920&q=75",tag:"LAMIN YAMAL"},
+ {name:"LUIZSUARIS",desc:"Big clubs preparing major signings.",img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ-oAWQyKkr7Aib20a0mrPouN-sGfdyydTb4MCQjYARA&s",tag:"INTER MIAMI"}
+];
+
+const grid=document.getElementById('grid');
+const search=document.getElementById('search');
+
+function show(list){
+  grid.innerHTML='';
+  list.forEach(i=>{
+    const c=document.createElement('div');
+    c.className='card';
+    c.innerHTML=`
+      <div class="badge">${i.tag}</div>
+      <img src="${i.img}">
+      <div class="card-body">
+        <h3>${i.name}</h3>
+        <p>${i.desc}</p>
+      </div>`;
+    grid.appendChild(c);
+  })
+}
+
+show(data);
+
+search.addEventListener('keyup',()=>{
+  const val=search.value.toLowerCase();
+  const filtered=data.filter(i=>i.name.toLowerCase().includes(val));
+  show(filtered);
+});
+</script>
+
+</body>
+</html>

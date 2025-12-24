@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SOOPERFOOTBALL | Live Scores</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="C:\Users\temp\Documents\INSTA\logos\SOOOPER FOOTBALL.png" type="image">
+<style>
+:root {
+  --bg: #f1f3f6;
+  --card: #ffffff;
+  --text: #111;
+  --nav: #1c1c1c;
+  --accent: #00c853;
+  --muted: #777;
+}
+
+body.dark {
+  --bg: #0b0b0b;
+  --card: #1a1a1a;
+  --text: #ffffff;
+  --nav: #000000;
+  --accent: #00ffcc;
+  --muted: #aaa;
+}
+
+* { box-sizing: border-box; transition: .25s; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--bg); color:var(--text); }
+
+header { background:var(--nav); color:#fff; text-align:center; padding:16px; }
+header h1 { background:#74ff03; color:#2d00f3; display:inline-block; padding:8px 16px; border-radius:8px; }
+
+nav { background:var(--nav); text-align:center; padding:10px; }
+nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
+nav a.active, nav a:hover { color:var(--accent); }
+
+.toggle { position:fixed; top:15px; right:15px; background:var(--accent); border:none; padding:8px 14px; border-radius:20px; cursor:pointer; font-weight:bold; }
+
+.container { max-width:1100px; margin:20px auto; padding:10px; }
+
+/* SEARCH + FILTER BAR */
+.search-bar {
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.search-bar input, .search-bar select {
+  flex:1;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  background:var(--card);
+  color:var(--text);
+  font-size:14px;
+}
+
+/* MATCH CARD – NEW DESIGN */
+.match-card {
+  background:linear-gradient(135deg, var(--card), rgba(0,0,0,0.03));
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.match-top {
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.teams {
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  margin:14px 0;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.teams span:last-child { text-align:right; }
+
+.score {
+  background:var(--nav);
+  color:#fff;
+  padding:6px 18px;
+  border-radius:30px;
+  font-size:20px;
+}
+
+.status {
+  font-size:13px;
+  font-weight:bold;
+}
+
+.live { color:#ff3b3b; animation:blink 1s infinite; }
+.finished { color:#28a745; }
+.upcoming { color:#ff9800; }
+
+@keyframes blink { 50% { opacity:.4; } }
+
+footer { background:var(--nav); color:#fff; text-align:center; padding:10px; margin-top:30px; }
+</style>
+</head>
+
+<body>
+
+<button class="toggle" id="toggleBtn">🌙 Dark</button>
+
+<header>
+  <h1>SOOPERFOOTBALL</h1>
+  <p>⚽ Live Scores & Matches</p>
+</header>
+
+<nav>
+    
+  <a href="C:\Users\temp\Documents\YT\Home.html">Home</a>
+    <a href="C:\Users\temp\Documents\YT\Transfers.html">Transfers</a>
+    <a href="C:\Users\temp\Documents\YT\news.html">Latest News</a>
+    <a class="active" href="C:\Users\temp\Documents\YT\Matches.html">Matches</a>
+    <a href="C:\Users\temp\Documents\YT\Clubs.html">Clubs</a>
+    <a href="C:\Users\temp\Documents\YT\Leagues.HTML">Leagues & Table</a>
+    <a href="C:\Users\temp\Documents\YT\player.html">Player images</a>
+</nav>
+
+<div class="container">
+
+  <!-- SEARCH & FILTER -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search team or league…">
+    <select id="statusFilter">
+      <option value="">All Status</option>
+      <option value="Live">Live</option>
+      <option value="Finished">Finished</option>
+      <option value="Upcoming">Upcoming</option>
+    </select>
+  </div>
+
+  <div id="matches"></div>
+</div>
+
+<footer>© 2025 SOOPERFOOTBALL</footer>
+
+<script>
+const toggleBtn = document.getElementById("toggleBtn");
+toggleBtn.onclick = () => {
+  document.body.classList.toggle("dark");
+  toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
+};
+
+const matchesData = [
+  { league:"Premier League", date:"LIVE • 65'", home:"Manchester Blue", away:"Liverpool Red", score:"2 - 1", status:"Live" },
+  { league:"La Liga", date:"FT", home:"Real Madrid", away:"Barcelona", score:"1 - 1", status:"Finished" },
+  { league:"Serie A", date:"19 Dec 2025", home:"AC Milan", away:"Juventus", score:"vs", status:"Upcoming" },
+  { league:"Bundesliga", date:"20 Dec 2025", home:"Bayern Munich", away:"Dortmund", score:"vs", status:"Upcoming" }
+];
+
+const container = document.getElementById("matches");
+const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
+
+function renderMatches() {
+  container.innerHTML = "";
+  const search = searchInput.value.toLowerCase();
+  const status = statusFilter.value;
+
+  matchesData
+    .filter(m =>
+      (!status || m.status === status) &&
+      (m.home.toLowerCase().includes(search) ||
+       m.away.toLowerCase().includes(search) ||
+       m.league.toLowerCase().includes(search))
+    )
+    .forEach(m => {
+      const card = document.createElement("div");
+      card.className = "match-card";
+
+      const statusClass = m.status === "Live" ? "live" : m.status === "Finished" ? "finished" : "upcoming";
+
+      card.innerHTML = `
+        <div class="match-top">
+          <span>${m.league}</span>
+          <span>${m.date}</span>
+        </div>
+        <div class="teams">
+          <span>${m.home}</span>
+          <span class="score">${m.score}</span>
+          <span>${m.away}</span>
+        </div>
+        <div class="status ${statusClass}">${m.status}</div>
+      `;
+
+      container.appendChild(card);
+    });
+}
+
+searchInput.oninput = renderMatches;
+statusFilter.onchange = renderMatches;
+
+renderMatches();
+</script>
+
+</body>
+</html>

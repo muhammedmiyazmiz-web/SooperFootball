@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SOOPERFOOTBALL | Clubs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="C:\Users\temp\Documents\INSTA\logos\SOOOPER FOOTBALL.png" type="image">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins, Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0b5ed7,#0a3f91);
+    color:#fff;
+    min-height:100vh;
+    transition:0.4s;
+}
+
+body.dark{
+    background:#0f172a;
+    color:#f1f5f9;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:25px;
+}
+
+header h1{
+    font-size:40px;
+    letter-spacing:2px;
+}
+
+header h2{
+    margin-top:10px;
+    opacity:0.9;
+}
+
+/* NAVBAR */
+nav{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.15);
+    transition:0.3s;
+}
+
+nav a:hover,
+nav a.active{
+    background:#fff;
+    color:#0b5ed7;
+}
+
+/* DARK MODE BUTTON */
+.toggle{
+    position:fixed;
+    top:15px;
+    right:15px;
+    padding:10px 15px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    background:#fff;
+    color:#000;
+    font-weight:600;
+}
+
+/* SEARCH */
+.search-container{
+    display:flex;
+    justify-content:center;
+    margin:25px 0;
+}
+
+.search-container input{
+    width:320px;
+    padding:14px 20px;
+    border-radius:30px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.search-container input:focus{
+    width:380px;
+}
+
+/* LEAGUES */
+.leagues{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    padding:30px;
+}
+
+.league-card{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    padding:25px;
+    border-radius:18px;
+    cursor:pointer;
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.league-card h3{
+    font-size:22px;
+}
+
+.league-card span{
+    display:block;
+    margin-top:12px;
+    opacity:0.9;
+}
+
+.league-card::after{
+    content:"⚽";
+    position:absolute;
+    font-size:90px;
+    opacity:0.15;
+    right:-15px;
+    bottom:-25px;
+}
+
+.league-card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* CLUBS */
+.news{
+    margin:30px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.15);
+    text-align:center;
+}
+
+.clubs{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:25px;
+    margin-top:25px;
+}
+
+.club-card{
+    background:linear-gradient(135deg,#1e40af,#2563eb);
+    padding:20px;
+    border-radius:18px;
+    text-align:center;
+    transition:0.4s;
+}
+
+.club-card img{
+    width:90px;
+    height:90px;
+    object-fit:contain;
+    background:#fff;
+    border-radius:50%;
+    padding:10px;
+    margin-bottom:15px;
+}
+
+.club-card h4{
+    font-size:18px;
+}
+
+.club-card:hover{
+    transform:translateY(-8px) scale(1.05);
+    box-shadow:0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<button class="toggle" id="toggleBtn">🌙 Dark</button>
+
+<header>
+    <h1>SOOPERFOOTBALL</h1>
+    <h2>⚽ Football Clubs</h2>
+
+    <nav>
+     <a href="C:\Users\temp\Documents\YT\Home.html">Home</a>
+    <a href="C:\Users\temp\Documents\YT\Transfers.html">Transfers</a>
+    <a href="C:\Users\temp\Documents\YT\news.html">Latest News</a>
+    <a href="C:\Users\temp\Documents\YT\Matches.html">Matches</a>
+    <a class="active" href="C:\Users\temp\Documents\YT\Clubs.html">Clubs</a>
+    <a href="C:\Users\temp\Documents\YT\Leagues.HTML">Leagues & Table</a>
+    <a href="C:\Users\temp\Documents\YT\player.html">Player images</a>
+    </nav>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="🔍 Search league..." onkeyup="searchLeagues()">
+    </div>
+</header>
+
+<section class="leagues">
+    <div class="league-card" data-name="Premier League England" onclick="showClubs('Premier League')">
+        <h3>Premier League</h3>
+        <span>🇬🇧 England</span>
+    </div>
+
+    <div class="league-card" data-name="La Liga Spain" onclick="showClubs('La Liga')">
+        <h3>La Liga</h3>
+        <span>🇪🇸 Spain</span>
+    </div>
+
+    <div class="league-card" data-name="Serie A Italy" onclick="showClubs('Serie A')">
+        <h3>Serie A</h3>
+        <span>🇮🇹 Italy</span>
+    </div>
+</section>
+
+<section class="news" id="newsSection">
+    <h2>League Clubs</h2>
+    <p>Select a league to view clubs</p>
+</section>
+
+<footer>
+    <p>© 2025 SOOPERFOOTBALL</p>
+</footer>
+
+<script>
+/* DARK MODE */
+toggleBtn.onclick = () => {
+    document.body.classList.toggle("dark");
+    toggleBtn.textContent = document.body.classList.contains("dark") ? "☀ Light" : "🌙 Dark";
+};
+
+/* SEARCH */
+function searchLeagues(){
+    let input = searchInput.value.toLowerCase();
+    document.querySelectorAll(".league-card").forEach(card=>{
+        card.style.display = card.dataset.name.toLowerCase().includes(input) ? "block" : "none";
+    });
+}
+
+/* CLUB DATA */
+const clubsData = {
+    "Premier League":[
+        {name:"Manchester United",img:"https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg"},
+        {name:"Manchester City",img:"https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg"},
+        {name:"Liverpool",img:"https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg"},
+        {name:"Chelsea",img:"https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg"}
+    ],
+    "La Liga":[
+        {name:"Real Madrid",img:"https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg"},
+        {name:"Barcelona",img:"https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg"},
+        {name:"Atletico Madrid",img:"https://upload.wikimedia.org/wikipedia/en/f/f4/Atletico_Madrid_2017_logo.svg"}
+    ],
+    "Serie A":[
+        {name:"Juventus",img:"https://upload.wikimedia.org/wikipedia/commons/1/15/Juventus_FC_2017_logo.svg"},
+        {name:"AC Milan",img:"https://upload.wikimedia.org/wikipedia/commons/d/d0/Logo_of_AC_Milan.svg"},
+        {name:"Inter Milan",img:"https://upload.wikimedia.org/wikipedia/en/0/05/FC_Internazionale_Milano_2021.svg"}
+    ]
+};
+
+/* SHOW CLUBS */
+function showClubs(league){
+    let clubs = clubsData[league] || [];
+    let html = clubs.map(c=>`
+        <div class="club-card">
+            <img src="${c.img}">
+            <h4>${c.name}</h4>
+        </div>
+    `).join("");
+
+    newsSection.innerHTML = `
+        <h2>${league} Clubs</h2>
+        <div class="clubs">${html}</div>
+    `;
+}
+</script>
+
+</body>
+</html>

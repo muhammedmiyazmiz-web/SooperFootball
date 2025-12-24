@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOOPERFOOTBALL | Transfers</title>
+<link rel="shortcut icon" href="C:\Users\temp\Documents\INSTA\logos\SOOOPER FOOTBALL.png" type="image">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins, Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0b5ed7,#0a0a0a);
+    min-height:100vh;
+    color:#fff;
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    background:rgba(0,0,0,0.45);
+    padding:15px;
+    backdrop-filter:blur(10px);
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    padding:8px 14px;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+nav a:hover,
+nav a.active{
+    background:#0b5ed7;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:40px 10px 10px;
+}
+
+header h1{
+    font-size:40px;
+    color:#00eaff;
+}
+
+header p{
+    opacity:0.85;
+}
+
+/* SEARCH BOX */
+.search-box{
+    max-width:700px;
+    margin:30px auto;
+    display:flex;
+    justify-content:center;
+}
+
+.search-box input{
+    width:70%;
+    padding:14px 18px;
+    border:none;
+    border-radius:30px 0 0 30px;
+    outline:none;
+    font-size:16px;
+}
+
+.search-box button{
+    padding:14px 25px;
+    border:none;
+    border-radius:0 30px 30px 0;
+    background:#0b5ed7;
+    color:#fff;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.search-box button:hover{
+    background:#084298;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:10px;
+    display:grid;
+    gap:20px;
+}
+
+/* TRANSFER CARD */
+.transfer-card{
+    background:rgba(255,255,255,0.08);
+    border-radius:15px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(12px);
+    transition:0.3s;
+}
+
+.transfer-card:hover{
+    transform:scale(1.02);
+    background:rgba(255,255,255,0.12);
+}
+
+/* PLAYER INFO */
+.player-info h3{
+    margin-bottom:6px;
+}
+
+.player-info p{
+    font-size:14px;
+    opacity:0.85;
+}
+
+/* BADGES */
+.badge{
+    padding:8px 18px;
+    border-radius:25px;
+    font-size:14px;
+    font-weight:600;
+    text-transform:uppercase;
+}
+
+.in{ background:#198754; }
+.out{ background:#dc3545; }
+.loan{ background:#0dcaf0; color:#000; }
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:15px;
+    background:#000;
+    margin-top:40px;
+    font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+    .transfer-card{
+        flex-direction:column;
+        text-align:center;
+        gap:12px;
+    }
+
+    .search-box input{
+        width:60%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<a href="C:\Users\temp\Documents\YT\Home.html">Home</a>
+<a class="active" href="C:\Users\temp\Documents\YT\Transfers.html">Transfers</a>
+<a href="C:\Users\temp\Documents\YT\news.html">Latest News</a>
+<a href="C:\Users\temp\Documents\YT\Matches.html">Matches</a>
+<a href="C:\Users\temp\Documents\YT\Clubs.html">Clubs</a>
+<a href="C:\Users\temp\Documents\YT\Leagues.HTML">Leagues & Table</a>
+<a href="C:\Users\temp\Documents\YT\player.html">Player images</a>
+</nav>
+
+<!-- HEADER -->
+<header>
+    <h1>SOOPERFOOTBALL</h1>
+    <p>⚽ Latest Transfer Updates</p>
+</header>
+
+<!-- SEARCH -->
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search player, club or fee...">
+    <button>Search</button>
+</div>
+
+<!-- TRANSFERS -->
+<div class="container" id="transferList"></div>
+
+<!-- FOOTER -->
+<footer>
+    © 2025 SOOPERFOOTBALL – Transfer Centre
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+const transfers = [
+    { player:"Vinícius Júnior", from:"Real Madrid", to:"Manchester City", fee:"€70M", type:"IN" },
+    { player:"Ousmane Dembélé", from:"PSG", to:"AC Milan", fee:"€45M", type:"OUT" },
+    { player:"Lucas Silva", from:"Free Agent", to:"Barcelona", fee:"Free Transfer", type:"IN" },
+    { player:"Carlo Pinsoglio", from:"Juventus", to:"Chelsea", fee:"Loan", type:"LOAN" }
+];
+
+const transferList = document.getElementById("transferList");
+const searchInput = document.getElementById("searchInput");
+
+function displayTransfers(data){
+    transferList.innerHTML = "";
+    data.forEach(t=>{
+        const card = document.createElement("div");
+        card.className = "transfer-card";
+
+        card.innerHTML = `
+            <div class="player-info">
+                <h3>${t.player}</h3>
+                <p>${t.from} ➜ ${t.to}</p>
+                <p>Fee: ${t.fee}</p>
+            </div>
+            <div class="badge ${t.type.toLowerCase()}">${t.type}</div>
+        `;
+        transferList.appendChild(card);
+    });
+}
+
+searchInput.addEventListener("keyup", ()=>{
+    const value = searchInput.value.toLowerCase();
+    const filtered = transfers.filter(t =>
+        t.player.toLowerCase().includes(value) ||
+        t.from.toLowerCase().includes(value) ||
+        t.to.toLowerCase().includes(value) ||
+        t.fee.toLowerCase().includes(value)
+    );
+    displayTransfers(filtered);
+});
+
+// INITIAL LOAD
+displayTransfers(transfers);
+</script>
+
+</body>
+</html>

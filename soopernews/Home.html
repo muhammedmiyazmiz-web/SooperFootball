@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SOOPERFOOTBALL | Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="C:\Users\temp\Documents\INSTA\logos\SOOOPER FOOTBALL.png" type="image">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0b1d2a;
+    color:#fff;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#001f3f,#005f73);
+    padding:30px;
+    text-align:center;
+}
+header span{color:#00ffcc;}
+header h1{font-size:36px;}
+header p{opacity:.9}
+
+/* NAV */
+nav{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    padding:15px;
+    background:#001427;
+    flex-wrap:wrap;
+}
+nav a{
+    color:#fff;
+    text-decoration:none;
+    padding:10px 20px;
+    border-radius:20px;
+    background:rgba(255,255,255,.1);
+}
+nav a:hover,.active{
+    background:#00ffcc;
+    color:#000;
+}
+
+/* SEARCH */
+.search-container{
+    display:flex;
+    justify-content:center;
+    padding:20px;
+    background:#001427;
+}
+.search-box{
+    display:flex;
+    background:#102a43;
+    border-radius:30px;
+    max-width:420px;
+    width:100%;
+}
+.search-box input{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    padding:12px 18px;
+    color:#fff;
+}
+.search-box button{
+    background:#00ffcc;
+    border:none;
+    padding:0 20px;
+    cursor:pointer;
+}
+
+/* HERO */
+.hero{
+    padding:60px 20px;
+    text-align:center;
+    background:url("https://images.unsplash.com/photo-1508098682722-e99c43a406b2") center/cover;
+    position:relative;
+}
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.65);
+}
+.hero-content{
+    position:relative;
+    z-index:1;
+}
+.watch-btn{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#00ffcc;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* SECTION */
+.section{
+    padding:40px 20px;
+    max-width:1100px;
+    margin:auto;
+}
+.section h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#00ffcc;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+.card{
+    background:#102a43;
+    border-radius:15px;
+    overflow:hidden;
+}
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+.card-content{padding:15px;}
+.card-content button{
+    margin-top:10px;
+    background:#00ffcc;
+    border:none;
+    padding:8px 15px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+/* VIDEO MODAL */
+.video-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+.video-box{
+    background:#000;
+    width:90%;
+    max-width:800px;
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+}
+.video-box iframe{
+    width:100%;
+    height:450px;
+}
+.close-btn{
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:25px;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    background:#001427;
+    text-align:center;
+    padding:15px;
+    opacity:.8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1><span>SOOPER</span>FOOTBALL</h1>
+    <p>Your home of football news, matches & transfers</p>
+</header>
+
+<nav>
+    <a class="active" href="C:\Users\temp\Documents\YT\Home.html">Home</a>
+    <a href="C:\Users\temp\Documents\YT\Transfers.html">Transfers</a>
+    <a href="C:\Users\temp\Documents\YT\news.html">Latest News</a>
+    <a href="C:\Users\temp\Documents\YT\Matches.html">Matches</a>
+    <a href="C:\Users\temp\Documents\YT\Clubs.html">Clubs</a>
+    <a href="C:\Users\temp\Documents\YT\Leagues.HTML">Leagues & Table</a>
+    <a href="C:\Users\temp\Documents\YT\player.html">Player images</a>
+</nav>
+
+<div class="search-container">
+    <form class="search-box">
+        <input type="text" placeholder="Search news, players, clubs...">
+        <button>🔍</button>
+    </form>
+</div>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>⚽ Live Football Updates</h2>
+        <p>Latest news, transfers and match highlights</p>
+        <button class="watch-btn" onclick="openVideo( )">▶ Watch Highlights</button>
+    </div>
+</section>
+
+<section class="section">
+<h2>Latest Football News</h2>
+<div class="cards">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6">
+<div class="card-content">
+<h3>Big Transfer Completed</h3>
+<p>A European giant secures a blockbuster signing.</p>
+<button onclick="openVideo()">▶ Watch Video</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d">
+<div class="card-content">
+<h3>Young Star Rising</h3>
+<p>Teen sensation shines in top-flight football.</p>
+<button onclick="openVideo()">▶ Watch Video</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal">
+    <div class="video-box">
+        <span class="close-btn" onclick="closeVideo()">✖</span>
+        <iframe src="https://www.youtube.com/embed/8lqv7wH5p5U" allowfullscreen></iframe>
+    </div>
+</div>
+
+<footer>
+© 2025 SOOPERFOOTBALL | Home
+</footer>
+
+<script>
+function openVideo(){
+    document.getElementById("videoModal").style.display="flex";
+}
+function closeVideo(){
+    document.getElementById("videoModal").style.display="none";
+}
+</script>
+
+</body>
+</html>
+
+
